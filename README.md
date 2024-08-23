@@ -54,11 +54,11 @@ This is the Final Lab where we are working on **Ingesting Logs** into our **Log 
 <summary> <h2> 1️⃣ Configure Logging for Azure Storage</h2> </summary>
 <br>
 
-> The first thing we're going to do is configure Logging for our storage account that already exists in our Environment.
+> The first thing we're going to do is **Configure Logging** for our **Storage Account** that already exists in our Environment.
 > 
-> We'll do this by Enabling Diagnostic Settings for Blob storage
+> We'll do this by **Enabling Diagnostic Settings for Blob Storage**.
 > 
-> This will allow us to Collect All Logs & Metrics (metrics will record Auth Failures) and send it to our LAW instance.
+> This will allow us to **Collect All Logs & Metrics** (metrics will record Auth Failures) and send it to our LAW instance.
 
 <br>
 
