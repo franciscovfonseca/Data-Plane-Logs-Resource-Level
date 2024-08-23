@@ -42,7 +42,7 @@ This is the Final Lab where we are working on **Ingesting Logs** into our **Log 
 > 
 > ![azure portal](https://github.com/user-attachments/assets/2727e56c-f7ee-478b-99f3-ecbabe939fd6)
 > 
-> We already did Virtual Machines ➜ so we're just going to do our **Azure Storage Account** and **Key Vault** in this Lab.
+> We already configured the Virtual Machines ➜ so we're just going to do our **Azure Storage Account** and **Key Vault** in this Lab.
 > 
 >   </details>
 
@@ -51,14 +51,39 @@ This is the Final Lab where we are working on **Ingesting Logs** into our **Log 
 <br>
 
 <details close> 
-<summary> <h2> 1️⃣ Export Azure Activity Logs to Log Analytics Workspace</h2> </summary>
+<summary> <h2> 1️⃣ Configure Logging for Azure Storage</h2> </summary>
 <br>
 
-> Activity Log is where all those Management Plane Activities come from
->
-> These include Creating and Deleting Resources, Creating Resource Groups, etc. ➜ so that's the kind of stuff where's going to be logging
+> The first thing we're going to do is configure Logging for our storage account that already exists in our Environment.
+> 
+> We'll do this by Enabling Diagnostic Settings for Blob storage
+> 
+> This will allow us to Collect All Logs & Metrics (metrics will record Auth Failures) and send it to our LAW instance.
 
 <br>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+
 
 We can go back to the **Azure Portal** ➜ search for **Monitor** ➜ and click on the **Activity log** blade
 
@@ -94,8 +119,11 @@ And we're going to ➕ **Add diagnostic setting** to create another Diagnostic S
 <h2></h2>
 
 <details close> 
-<summary> <h2> 2️⃣ Generate some Logs</h2> </summary>
+<summary> <h2> 2️⃣ Configure Logging for Key Vault</h2> </summary>
 <br>
+
+
+
 
 In this next section of the Lab we're going to:
 
