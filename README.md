@@ -328,177 +328,47 @@ And the Secret Value / Password is revealed:
 
 ✅ The act of going to this page and **Show the Secret** should have **Created a Log** which will be forwarded to our LAW.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-In this next section of the Lab we're going to:
-
-1. Create a new **Resource Group** called ```Scratch-Resource-Group```
-
-2. Then we'll also create another **Resource Group** called ```Critical-Infrastructure-Wastewater```
-
-3. After that, we'll **Delete** both of these **Resource Groups**
-
-4. And finnally, we're going to do some **Queries against the Logs those actions Generated**
-
 <br>
+
+  </details>
 
 <h2></h2>
 
+<details close> 
+<summary> <h2> 4️⃣ Observe the Logs with KQL Queries</h2> </summary>
 <br>
 
-<h3> ❶ Create a new Resource Group named “Scratch-Resource-Group”</h3>
-<br>
 
-Back inside the **Azure Portal** ➜ search for **Resource Groups** ➜ and click on ➕ **Create**
 
-![azure portal](https://github.com/user-attachments/assets/527a9345-c31a-4967-a183-6708ce63971e)
 
-- We'll name the first Resource Group ```Scratch-Resource-Group```
 
-- For the **Region** ➜ select ```(US) East US 2```
 
-- Then click **Review + Create**
 
-![azure portal](https://github.com/user-attachments/assets/8d53d3f3-1d7b-4ac3-a708-dc582de32745)
 
-<br>
 
-<h2></h2>
 
-<br>
 
-<h3> ❷ Create another new Resource Group named “Critical-Infrastructure-Wastewater”</h3>
-<br>
 
-For the Next Resource Group we'll follow the same steps as for the previous one.
 
-- We'll name this second Resource Group ```Critical-Infrastructure-Wastewater```
 
-- Again ➜ for the **Region** ➜ select ```(US) East US 2```
 
-- Then click **Review + Create**
 
-![azure portal](https://github.com/user-attachments/assets/b1bce04f-448e-449e-80c1-857f0ebe65cd)
-
-<br>
-
-✅ We can confirm that both of our new **Resource Groups** were created:
-
-![azure portal](https://github.com/user-attachments/assets/eabe69da-449d-4f87-bb79-95222453cdd9)
-
-<br>
-
-<h2></h2>
-
-<br>
-
-<h3> ❸ Delete both of the new Resource Groups</h3>
-<br>
-
-Back to the **Azure Portal** ➜ go to our **Resource groups** ➜ click on ```Scratch-Resource-Group```
-
-![azure portal](https://github.com/user-attachments/assets/9fb59564-ee3c-4be8-b963-53c3cb14c5d1)
-
-We'll click on 🗑️ **Delete resource group**
-
-![azure portal](https://github.com/user-attachments/assets/32a92fd7-cb93-4d80-99da-896200ab2742)
-
-And then we'll Delete the Resource Group:
-
-![azure portal](https://github.com/user-attachments/assets/49c16239-3b2b-4dd5-9ec8-60bec5fd79a7)
-
-<br>
-
-<h2></h2>
 
 <br>
 
 <br>
 
-We'll do the exact same thing to **Delete** the ```Critical-Infrastructure-Wastewater``` Resource Group:
-
-![azure portal](https://github.com/user-attachments/assets/764971d7-4ea6-49b8-8fe1-e2863557ee3f)
-
 <br>
 
-<h2></h2>
-
 <br>
-
-<h3> ❹ Query for the Deletion of Critical Resource Groups</h3>
-<br>
-
-We'll now copy the following **KQL Query** and paste into our **Log Analytics Workspace** to Inspect the **Delete Logs** we just Generated:
-
-<br>
-
-```commandline
-// Deletion activities within a certain timespan:
-AzureActivity
-| where OperationNameValue endswith "DELETE"
-| where ActivityStatusValue == "Success"
-| where TimeGenerated > ago(30m)
-| order by TimeGenerated
-```
-
-<br>
-
->   <details close> 
->   
-> **<summary> 📝 KQL Query Explanation</summary>**
-> 
->     <br>
->     
-> This will return all of the Resource Groups that were successfully Deleted in Azure in the last 30 minutes.
->
-> <br>
->     
-> 💡 Note:
-> 
-> - If you wanna make an Alert for some reason for when someone deletes any specific Resource ➜ this KQL Query is something that you can use.
-> 
-> - Or also if you just want to manually Query in Log Analytics Workspace ➜ like we're doing here
-> 
->   </details>
 
 <br>
 
 <br>
 
-✅ We can confirm that the ***Delete Resource Group Activity Logs*** are properly being Generated & Forwarded to our LAW:
+<br>
 
-![azure portal](https://github.com/user-attachments/assets/4aab996a-dcf1-415f-967a-5168ef1738b9)
+
 
 <br>
 
