@@ -5,7 +5,7 @@
 <br>
 
 <p align="center">
-<img width="800" src="https://github.com/user-attachments/assets/28983c6e-9754-4276-a3e9-c0426baa1b4f" alt="Banner"/>
+<img width="800" src="https://github.com/user-attachments/assets/a31ca5a8-31de-4d79-86e3-13a5188cf90a" alt="Banner"/>
 <br />
 
 <br />
@@ -302,7 +302,7 @@ And inside of our new Container ➜ we'll ↑ **Upload** a random Text File from
 
 We're going to Create another Secret:
 
-- **Name** the Secret ```Super-Secret-Password-1``` for example:
+- **Name** the Secret ```Super-Secret-Password-1``` for example
 
 - For the **Secret value** ➜ we can make it ```Cyberlab123!``` again
 
