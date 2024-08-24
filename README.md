@@ -338,11 +338,212 @@ And the Secret Value / Password is revealed:
 <summary> <h2> 4️⃣ Observe the Logs with KQL Queries</h2> </summary>
 <br>
 
+> At this point we should be able to Query the ```StorageBlobLogs``` from the **Azure Storage Account**.
+> 
+> And we should also be able to Query the ```AzureDiagnostics``` for the **AzureKey Vault**.
 
+<br>
 
+We can start out by going to our LAW and Run the ```StorageBlobLogs``` Query and Analyse the Blob Storage Logs:
 
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
 
+📝 **Exercise**:
+ 
+> We can also Run some of the following **KQL Queries** to Analyze some of the Logs Generated.
+> 
+> This will give us an idea of **How to Query Logs** and see some **Use Cases** that we might want to implement in our **SIEM** for example.
 
+<details close> 
+<summary> <h3> Storage Account Test Logs</h3> </summary>
+<br>
+
+```commandline
+// Authorization Error
+StorageBlobLogs 
+| where MetricResponseType endswith "Error" 
+| where StatusText == "AuthorizationPermissionMismatch"
+| order by TimeGenerated asc
+```
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+// Reading a bunch of blobs
+StorageBlobLogs
+| where OperationName == "GetBlob"
+```
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+//Deleting a bunch of blobs (in a short time period)
+StorageBlobLogs | where OperationName == "DeleteBlob"
+| where TimeGenerated > ago(24h)
+```
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+//Putting a bunch of blobs (in a short time period) 
+StorageBlobLogs | where OperationName == "PutBlob"
+| where TimeGenerated > ago(24h)
+```
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+//Copying a bunch of blobs (in a short time period)
+StorageBlobLogs | where OperationName == "CopyBlob"
+| where TimeGenerated > ago(24h)
+```
+
+<br>
+
+  </details>
+
+<h2></h2>
+
+<details close> 
+<summary> <h3> Key Vault Test Logs</h3> </summary>
+<br>
+
+```commandline
+// List out Secrets
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT"
+| where OperationName == "SecretList"
+```
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+// Attempt to view passwords that don't exist
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT"
+| where OperationName == "SecretGet"
+| where ResultSignature == "Not Found"
+```
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+// Viewing an actual existing password
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT"
+| where OperationName == "SecretGet"
+| where ResultSignature == "OK"
+```
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+// Viewing a specific existing password
+let CRITICAL_PASSWORD_NAME = "Tenant-Global-Admin-Password";
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT"
+| where OperationName == "SecretGet"
+| where id_s contains CRITICAL_PASSWORD_NAME
+```
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+// Updating a password Success
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT" 
+| where OperationName == "SecretSet"
+```
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+// Updating a specific existing password Success
+let CRITICAL_PASSWORD_NAME = "Tenant-Global-Admin-Password";
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT" 
+| where OperationName == "SecretSet"
+| where id_s endswith CRITICAL_PASSWORD_NAME
+| where TimeGenerated > ago(2h)
+```
+
+<br>
+
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
+
+<h2></h2>
+
+<br>
+
+```commandline
+// Failed access attempts
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT" 
+| where ResultSignature == "Unauthorized"
+
+<br>
+
+  </details>
+
+<h2></h2>
 
 
 
