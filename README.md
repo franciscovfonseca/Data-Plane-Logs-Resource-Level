@@ -340,23 +340,27 @@ And the Secret Value / Password is revealed:
 
 > At this point we should be able to Query the ```StorageBlobLogs``` from the **Azure Storage Account**.
 > 
-> And we should also be able to Query the ```AzureDiagnostics``` for the **AzureKey Vault**.
+> And we should also be able to Query the ```AzureDiagnostics``` for the **Azure Key Vault**.
 
 <br>
 
-We can start out by going to our LAW and Run the ```StorageBlobLogs``` Query and Analyse the Blob Storage Logs:
+We can start out by going to our LAW and **Run the ```StorageBlobLogs``` Query** to Analyse the Blob Storage Logs:
 
 ![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
 
 📝 **Exercise**:
  
 > We can also Run some of the following **KQL Queries** to Analyze some of the Logs Generated.
 > 
-> This will give us an idea of **How to Query Logs** and see some **Use Cases** that we might want to implement in our **SIEM** for example.
+> This will give us an idea of **How to Query Logs** and see some **Use Cases** that we might want to implement in our **SIEM** instance.
 
 <details close> 
 <summary> <h3> Storage Account Test Logs</h3> </summary>
 <br>
+
+#### Authorization Error:
 
 ```commandline
 // Authorization Error
@@ -372,6 +376,8 @@ StorageBlobLogs
 
 <br>
 
+#### Reading Blobs:
+
 ```commandline
 // Reading a bunch of blobs
 StorageBlobLogs
@@ -383,6 +389,8 @@ StorageBlobLogs
 <h2></h2>
 
 <br>
+
+#### Deleting Blobs:
 
 ```commandline
 //Deleting a bunch of blobs (in a short time period)
@@ -396,6 +404,8 @@ StorageBlobLogs | where OperationName == "DeleteBlob"
 
 <br>
 
+#### Putting Blobs:
+
 ```commandline
 //Putting a bunch of blobs (in a short time period) 
 StorageBlobLogs | where OperationName == "PutBlob"
@@ -408,6 +418,8 @@ StorageBlobLogs | where OperationName == "PutBlob"
 
 <br>
 
+#### Copying Blobs:
+
 ```commandline
 //Copying a bunch of blobs (in a short time period)
 StorageBlobLogs | where OperationName == "CopyBlob"
@@ -416,13 +428,43 @@ StorageBlobLogs | where OperationName == "CopyBlob"
 
 <br>
 
+<br>
+
+💡 Note:
+
+> We don't have to make Alerts for all of these in Microsoft Sentinel when we do it in future Labs.
+>
+> But it's kind of an idea that we can Query & Alert on anything.
+
+<br>
+
   </details>
 
+<br>
+
 <h2></h2>
+
+<br>
+
+<br>
+
+As we now **Run the ```AzureDiagnostics``` Query** ➜ we can see that **Key Vault Logs** started coming into our LAW:
+
+![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+
+<br>
+
+📝 **Exercise**:
+ 
+> Similarlly to what we did with the Storage Account Logs ➜ we can Explore some of the following **KQL Queries**
+> 
+> By **Creating some Passwords & Observing them** inside of our **Azure Key vault** ➜ we've already **Generated some Logs** that we can Query inside of our LAW.
 
 <details close> 
 <summary> <h3> Key Vault Test Logs</h3> </summary>
 <br>
+
+#### List out Secrets:
 
 ```commandline
 // List out Secrets
@@ -433,13 +475,11 @@ AzureDiagnostics
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-<br>
-
 <h2></h2>
 
 <br>
+
+#### Attempt to View Non-Existent Passwords:
 
 ```commandline
 // Attempt to view passwords that don't exist
@@ -451,13 +491,11 @@ AzureDiagnostics
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-<br>
-
 <h2></h2>
 
 <br>
+
+#### Viewing a Password:
 
 ```commandline
 // Viewing an actual existing password
@@ -469,13 +507,11 @@ AzureDiagnostics
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-<br>
-
 <h2></h2>
 
 <br>
+
+#### Viewing a Specific Password:
 
 ```commandline
 // Viewing a specific existing password
@@ -488,13 +524,11 @@ AzureDiagnostics
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-<br>
-
 <h2></h2>
 
 <br>
+
+#### Updating a Password ➜ Success:
 
 ```commandline
 // Updating a password Success
@@ -505,13 +539,11 @@ AzureDiagnostics
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-<br>
-
 <h2></h2>
 
 <br>
+
+#### Updating a Specific Password ➜ Success:
 
 ```commandline
 // Updating a specific existing password Success
@@ -525,55 +557,34 @@ AzureDiagnostics
 
 <br>
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-<br>
-
 <h2></h2>
 
 <br>
+
+#### Failed Access Attempts:
 
 ```commandline
 // Failed access attempts
 AzureDiagnostics
 | where ResourceProvider == "MICROSOFT.KEYVAULT" 
 | where ResultSignature == "Unauthorized"
+```
+
+<br>
+
+<br>
+
+💡 Note:
+
+> We were able to get a sense for what these different Queries and what different Use Cases that might come into play.
+>
+> We're going to add the ```// Viewing a specific existing password``` Query to **Microsoft Sentinel** in a future Lab when we Create the **Analytics Rules** that spin-up **Alerts & Incidents** when somebody **Looks at a Critical Password**.
 
 <br>
 
   </details>
 
-<h2></h2>
-
-
-
-
-
-
-
-
-
-
-
 <br>
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-
-
-<br>
-
-<h2></h2>
 
   </details>
 
@@ -585,69 +596,9 @@ AzureDiagnostics
 
 <br>
 
-# Summary
+<br>
 
 <br>
 
-That wraps it up for this Lab.
-
-<br>
-
-As a Recap:
-
-1. We just **Enabled the Azure Activity Log** ➜ which is the **Management Plane**.
-
-<br>
-
->   <details close> 
-> 
-> **<summary> In other words:</summary>**
-> 
-> - Just clicking around and doing stuff on the Portal ➜ instead of the Logs just remaining in the **Azure Monitor Activity Log** ➜ we are forwarding them to the LAW.
-> 
->   </details>
-
-<br>
-
-2. We also practiced **Querying** some of those Logs from the **AzureActivity** Table inside of the Log Analytics Workspace.
-
-<br>
-
->   <details close> 
->   
-> **<summary> 💡</summary>**
-> 
-> Ultimately ➜ after we Ingest all of the Logs into the Log Analytics Workspace:
->     
-> - We're going to use **Microsoft Sentinel** to do Automated Queries and Spin-up Alerts based on different Logs that it finds.<br>
-> 
->   </details>
-
-<br>
-
-In the Next Lab we're going to **Enable Diagnostic Settings and Logging & Monitoring** for the stuff at the actual **Resource Level**.
-
-- So we're going to set up Logging for our **Storage Account**.
-
-- And we're going to create a **Key Vault** ➜ and then set up Logging for that too.
-
-
-<br />
-
-<br />
-
-<br />  
-
-<br /> 
-
-<br />
-
-<br />  
-
-<br /> 
-
-<br />
-
-<br />
 
  
