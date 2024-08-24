@@ -285,7 +285,7 @@ And inside of our new Container ➜ we'll ↑ **Upload** a random Text File from
 
 ![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
 
-✅ The act of uploading a Blob File into our Storage Account is going to Create Data Plane Logs that our Diagnosting Setting that we created earlier should send to Log Analytics Workspace.
+✅ The act of **Uploading a Blob File** into our **Storage Account** is going to **Create Data Plane Logs** that our **Diagnosting Setting** (which we created earlier) should send to our LAW.
 
 <br>
 
