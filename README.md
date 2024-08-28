@@ -40,7 +40,7 @@ This is the Final Lab where we are working on **Ingesting Logs** into our **Log 
 > 
 > - And now we're doing the actual Resource themselves:
 > 
-> ![azure portal](https://github.com/user-attachments/assets/2727e56c-f7ee-478b-99f3-ecbabe939fd6)
+> ![azure portal](https://github.com/user-attachments/assets/b322d695-fb20-4325-8918-d497235949a9)
 > 
 > We already configured the Virtual Machines ➜ so we're just going to do our **Azure Storage Account** and **Key Vault** in this Lab.
 > 
@@ -64,11 +64,11 @@ This is the Final Lab where we are working on **Ingesting Logs** into our **Log 
 
 Inside the **Azure Portal** ➜ search for our **Storage Account** ```sacyberlab999```
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/cb28fc29-6358-4720-8ab7-b0134b8c653d)
 
 Then We'll scroll down and click on the **Diagnostic settings** blade:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/2e5c3d6c-7fb5-4061-87eb-cfe7b2ca1bc0)
 
 And we're going to Configure a Diagnostic Setting for the Blob Storage.
 
@@ -86,11 +86,11 @@ And we're going to Configure a Diagnostic Setting for the Blob Storage.
 
 Click on **blob**:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/82aa469c-4f87-4d73-927a-8717a5b74985)
 
 And then we'll ➕ **Add diagnostic setting**:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/12375231-1a9e-44aa-b4ee-cc7f1d9751ee)
 
 - We can set up the **"Diagnostic setting name"** as ```ds-storage-account```
 
@@ -101,7 +101,7 @@ And then we'll ➕ **Add diagnostic setting**:
 
 - Click 💾 Save
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/d7eb8f87-c213-4a39-a71d-0ab06bbc7381)
 
 The next thing we're going to do is Create an Azure Key Vault and Set Up Diagnostic Settings for it as well to send Logs into our LAW.
 
@@ -127,7 +127,7 @@ The next thing we're going to do is Create an Azure Key Vault and Set Up Diagnos
 
 Back to the **Azure Portal** ➜ search for **Key Vault** ➜ and click on the **Create key vault** button
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/d0145ab6-e373-4a20-be1f-b813a645ace2)
 
 - Select our **Resource group** ```RG-Cyber-Lab```
 
@@ -137,7 +137,7 @@ Back to the **Azure Portal** ➜ search for **Key Vault** ➜ and click on the *
 
 Click **Next**
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/9e5d7174-3256-4c49-8908-02c86878c0e2)
 
 Under the **"Access configuration"** tab:
 
@@ -145,7 +145,7 @@ Under the **"Access configuration"** tab:
 
 Click **Review + create**
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/f097a391-fd88-4b75-b2e5-a8fdc7201444)
 
 <br>
 
@@ -157,11 +157,11 @@ The next thing we're going to do is Create an Enterprise Secret
 
 Open our **Key Vault** ```akv-cyber-lab-9999```
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/8ea1c952-da65-4e57-a305-df1df588fd92)
 
 Click on the **Secrets** blade ➜ and then ➕ **Generate/Import** to Create a New Secret:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/d42e94e1-6ea0-4cbf-8bee-fb93be1f8529)
 
 - You can **Name** the Secret ```Tenant-Global-Admin-Password``` for example:
     - ⚠️ This isn't the actual Password itself ➜ this is just the **Name** of the Password
@@ -170,11 +170,11 @@ Click on the **Secrets** blade ➜ and then ➕ **Generate/Import** to Create a 
 
 Then just click **Create**
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/4544b371-32aa-4614-9e48-33696fefdba6)
 
 ✅ We can confirm that the Secret was Successfully Created:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/8a8863ec-e412-4169-82a1-f932f9fd5f2d)
 
 <br>
 
@@ -186,7 +186,7 @@ We're now going to Enable **Diagnostic Settings** for **Key vault**
 
 Inside our **Key Vault** ➜ click on the **Diagnostic settings** blade ➜ and then ➕ **Add diagnostic setting**:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/680148fa-d114-41c9-82cc-96efec60bfc0)
 
 - We can name it ```ds-akv```
 
@@ -196,49 +196,9 @@ Inside our **Key Vault** ➜ click on the **Diagnostic settings** blade ➜ and 
 
 - Click 💾 Save
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/1d8ba2c5-a3ed-4ac8-8ec5-6ff716c0ba97)
 
 So now the Key Vault Logs should be forwarding to our Log Analytics Workspace.
-
-<br>
-
-<h2></h2>
-
-<br>
-
-We're going to Create another Secret:
-
-- **Name** the Secret ```Super-Secret-Password-1``` for example:
-
-- For the **Secret value** ➜ we can make it ```Cyberlab123!``` again
-
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-Now we have 2 Password in our Key Vault:
-
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-<br>
-
-<h2></h2>
-
-<br>
-
-We can now click on the ```Super-Secret-Password-1``` Secret to observe it:
-
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-Then we'll click on the **"Show Secret Value"** Button:
-
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-And the Secret Value / Password is revealed:
-
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
-
-✅ The act of going to this page and **Show the Secret** should have **Created a Log** which will be forwarded to our LAW.
 
 <br>
 
@@ -259,13 +219,13 @@ And the Secret Value / Password is revealed:
 
 We'll go back to the **Azure Portal** ➜ open our **Storage Account**:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/91c92fdf-0306-40ff-8feb-136306bda1c7)
 
 Click on the **Containers** blade ➜ and ➕ **Container** to create a new Container
 
 - Name it ```test``` ➜ and click **Create**
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/d245af47-b331-4d21-a3f0-59b837a86f8d)
 
 <br>
 
@@ -279,11 +239,11 @@ Click on the **Containers** blade ➜ and ➕ **Container** to create a new Cont
 
 So we created a Container called ```test```:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/8113a37e-9a23-4664-8b23-d0ebdb6c1a7e)
 
 And inside of our new Container ➜ we'll ↑ **Upload** a random Text File from our Computer:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/9ccf4aa6-ff38-4ab9-8605-86df702acaef)
 
 ✅ The act of **Uploading a Blob File** into our **Storage Account** is going to **Create Data Plane Logs** that our **Diagnosting Setting** (which we created earlier) should send to our LAW.
 
@@ -300,36 +260,41 @@ And inside of our new Container ➜ we'll ↑ **Upload** a random Text File from
 
 <br>
 
-We're going to Create another Secret:
+We'll **Create another Secret**:
 
-- **Name** the Secret ```Super-Secret-Password-1``` for example
+- **Name** the Secret ```Super-Secret-Password-1``` for example:
 
 - For the **Secret value** ➜ we can make it ```Cyberlab123!``` again
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/580b7c15-991b-4fcb-bb33-7b1288a711f5)
 
 Now we have 2 Password in our Key Vault:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/8b190daa-fec6-475f-ab04-7de2aeb094a9)
+
+<br>
+
+<h2></h2>
+
+<br>
 
 We can now click on the ```Super-Secret-Password-1``` Secret to observe it:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/cb3636db-2bcf-40c6-b925-b63818604ea4)
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/049e7797-081c-4dd1-a329-dd559d6c73fb)
 
 Then we'll click on the **"Show Secret Value"** Button:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/faf2cc5d-cd14-4068-bb56-5c1970ce9bf9)
 
 And the Secret Value / Password is revealed:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/ee3f6c2f-a97a-44a0-9bd7-301ae43d5ffd)
 
 ✅ The act of going to this page and **Show the Secret** should have **Created a Log** which will be forwarded to our LAW.
 
 <br>
-
   </details>
 
 <h2></h2>
@@ -346,7 +311,7 @@ And the Secret Value / Password is revealed:
 
 We can start out by going to our LAW and **Run the ```StorageBlobLogs``` Query** to Analyse the Blob Storage Logs:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/c4af6a8d-0f98-4916-9aef-d45901246705)
 
 <br>
 
@@ -450,7 +415,7 @@ StorageBlobLogs | where OperationName == "CopyBlob"
 
 As we now **Run the ```AzureDiagnostics``` Query** ➜ we can see that **Key Vault Logs** started coming into our LAW:
 
-![azure portal](https://github.com/user-attachments/assets/d48d3fb9-7a66-48f1-9850-65ef7de0f74c)
+![azure portal](https://github.com/user-attachments/assets/42c8f80c-aa9f-4507-99f2-9894ffd68fe4)
 
 <br>
 
